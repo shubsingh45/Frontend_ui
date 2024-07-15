@@ -11,6 +11,8 @@ const SecondPage = () => {
   const [isHovered, setIsHovered] = useState()
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 640);
 
+  const [currentDot, setCurrentDot] = useState(0);
+  const totalDots = 3;
   useEffect(() => {
     const handleResize = () => {
       setIsSmallScreen(window.innerWidth < 640);
@@ -39,12 +41,15 @@ const SecondPage = () => {
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 4) % images.length);
+    setCurrentDot((prevDot) => (prevDot + 1) % totalDots);
+  
   };
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? images.length - 4 : prevIndex - 4
     );
+    setCurrentDot((prevDot) => (prevDot - 1 + totalDots) % totalDots);
   };
 
   const displayedImages = isSmallScreen ? [images[currentIndex]] : images.slice(currentIndex, currentIndex + 4);
@@ -64,7 +69,7 @@ const SecondPage = () => {
           </div>
 
         </div>
-        <div className=" flex flex-row gap-6   h-[343px] lg:w-[1091px] ml-0  mt-10 lg:ml-[268px] ">
+        <div className=" flex flex-row gap-6   h-[320px] lg:w-[1091px] ml-0  mt-10 lg:ml-[268px] ">
           <div className="flex space-x-4 overflow-hidden w-full">
             {displayedImages.map((img, index) => (
               <div
@@ -102,14 +107,17 @@ const SecondPage = () => {
             ))}
           </div>
         </div>
-        <div className=" w-[405px]  lg:w-[1091px] md:w-[100%] flex flex-row justify-between relative -top-[206px] right-0  lg:-right-[128px]">
-          <Button className=' bg-red-500 w-20 border-red-500' onClick={handlePrev}>Previous</Button>
-          <Button className=' bg-red-500 w-20 border-red-500' onClick={handleNext}>Next</Button>
+        <div className=" w-[375px]   lg:w-[1091px] md:w-[100%] flex flex-row justify-between relative -top-[206px] right-0  lg:-right-[128px]">
+          <Button  className={`w-20 border ${currentDot === 0 ? 'bg-red-500 border-red-500' : 'bg-red-500 border-red-500' }`}  onClick={handlePrev}>Previous</Button>
+          <Button  className={`w-20 border ${currentDot === 1 ? 'bg-red-500 border-red-500' : 'bg-red-500 border-red-500' }`} onClick={handleNext}>Next</Button>
         </div>
-        <div className=" flex flex-row w-[60%] h-16  gap-3 mt-10 items-center">
-          <img src={reddot} alt="" />
-          <img src={blackdot} alt="" />
-          <img src={blackdot} alt="" />
+        <div className=" flex flex-row w-[60%] h-16 -ml-28 lg:ml-0  gap-6 mt- items-center">
+          {[...Array(totalDots)].map((_, index) => (
+          <div
+            key={index}
+            className={`w-3 h-3 rounded-full ${currentDot === index ? 'bg-red-500' : 'bg-black'}`}
+          ></div>
+        ))}
         </div>
       </div>
     </div>

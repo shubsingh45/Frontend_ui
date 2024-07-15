@@ -12,18 +12,41 @@ import dish1 from '../assests/dish1.jpg'
 import dish2 from '../assests/dish2.jpg'
 const ThirdPage = () => {
   const [img, setImg] = useState(img5)
-  const handelFImage = () =>{
+
+  // const handelFImage = () =>{
+  // }
+  // const handel2ndImage = () =>{
+  // }
+  // const handel3rdImage = () =>{
+  // }
+  const [fColor, setFColor] = useState('bg-red-500')
+  const [sColor, setSColor] = useState('bg-white   ')
+  const [tColor, setTColor] = useState('bg-white   ')
+  
+  const handel1st = () =>{
     setImg(img5)
+    setFColor('bg-red-500')
+    setSColor('bg-white')
+    setTColor('bg-white   ')
   }
-  const handel2ndImage = () =>{
+  const handel2nd = () =>{
     setImg(dish1)
+    setFColor('bg-white ')
+    setSColor('bg-red-500 ')
+    setTColor('bg-white')
+    
   }
-  const handel3rdImage = () =>{
+  const handel3rd = () =>{
+    setFColor('bg-white ')
+    setTColor('bg-red-500 ')
+    setSColor('bg-white')
     setImg(dish2)
+    
   }
+  
 
   return (
-    <div className=' min-h-screen w-full flex justify-center    '>
+    <div className=' min-h-screen w-full flex justify-center  '>
       <div className=" w-full lg:w-[60%] lg:h-[80%] flex flex-col justify-center items-center mt-16 ">
         <h1 className=' text-[20px] font-semibold mt-2 text-red-500 '>WHY CHOOSE US</h1>
         <h1 className='text-[35px] font-bold   mt-2'>WHY YOU ARE BEST</h1>
@@ -58,17 +81,17 @@ const ThirdPage = () => {
               <img src={img} alt="" className='h-[300px] lg:h-[378px] lg:w-[558px] md:w-[90%] md:h-[408px]' />
             </div>
             <div className=" w-full lg:w-[35%] lg:h-[378px] p-1 flex lg:flex-col flex-row justify-between bg-neutral-100 gap-1 ">
-              <div className=" bg-red-500  w-full flex flex-col justify-center items-center h-full cursor-pointer" onClick={handelFImage}>
+              <div className={`${fColor}  w-full flex flex-col justify-center items-center h-full cursor-pointer`} onClick={handel1st}>
                 <h1 className=' text-[16px] font-semibold mt-2'>indian'hots</h1>
                 <p className='text-sm font-sans mt-2  text-center'>Lorem ipsum dolor sit amet consectetur adipisicing
                   elit. Rerum dolorum enim voluptatibus itaque expedita!</p>
               </div>
-              <div className=" bg-red-500  w-full flex flex-col justify-center items-center h-full cursor-pointer" onClick={handel2ndImage}>
+              <div className={`${sColor}   w-full flex flex-col justify-center items-center h-full cursor-pointer`} onClick={handel2nd}>
                 <h1 className=' text-[16px] font-semibold mt-2'>indian'hots</h1>
                 <p className='text-sm font-sans mt-2  text-center'>Lorem ipsum dolor sit amet consectetur adipisicing
                   elit. Rerum dolorum enim voluptatibus itaque expedita!</p>
               </div>
-              <div className=" bg-red-500  w-full flex flex-col justify-center items-center h-full cursor-pointer" onClick={ handel3rdImage}>
+              <div className={`{${tColor} w-full flex flex-col justify-center items-center h-full cursor-pointer`} onClick={handel3rd}>
                 <h1 className=' text-[16px] font-semibold mt-2'>indian'hots</h1>
                 <p className='text-sm font-sans mt-2  text-center'>Lorem ipsum dolor sit amet consectetur adipisicing
                   elit. Rerum dolorum enim voluptatibus itaque expedita!</p>

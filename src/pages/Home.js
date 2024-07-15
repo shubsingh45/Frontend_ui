@@ -24,7 +24,8 @@ const Home = () => {
     try {
       const res = axios.post("https://getform.io/f/ajjemwma", {
         email, fNmae, lName,
-      })
+      }
+    ).then(() => handelClose())
       setSuccessMessage('success')
 
     } catch (error) {
@@ -35,6 +36,13 @@ const Home = () => {
   }
   const handelOpen = () => {
     setIsOpen(true)
+    setErrorMessage('')
+    setSuccessMessage('')
+    setEmail('')
+    setLName('')
+    SsetFname('')
+    setCheck(false)
+
   }
   useEffect(() => {
     const handelScroll = () => {
@@ -50,6 +58,12 @@ const Home = () => {
   }, [isOpen])
 
   const handelClose = () => {
+    setErrorMessage('')
+    setSuccessMessage('')
+    setEmail('')
+    setLName('')
+    SsetFname('')
+    setCheck(false)
     setIsOpen(false)
   }
 
@@ -72,7 +86,7 @@ const Home = () => {
         {
           isOpen && (
             <div className=' fixed bg-slate-200 hover:shadow-lg hover:shadow-slate-300
-             flex flex-col h- w-[40%] lg:h-[320px] lg:w-[563px] top-[90px] items-center lg:left-[393px] rounded-md justify-center'>
+             flex flex-col h- w-[90%] lg:h-[320px] lg:w-[563px] top-[90px] items-center lg:left-[393px] rounded-md justify-center'>
               <div className=" w-[90%] h-[380px]   mt-3    ">
                   <form action="" typeof='' onSubmit={handelSubmit}>
                 <div className=" flex justify-between">
@@ -98,12 +112,13 @@ const Home = () => {
 </form>
                 {
                   errorMessage && (
-                    <span className=' text-red-500'>{errorMessage}</span>
+                    <span className=' text-center ml-16 lg:ml-48 mt-2 text-red-500'>{errorMessage}</span>
                   )
                 }
+                <br />
 {
                   successMessage && (
-                    <span className=' text-green-500'>{successMessage}</span>
+                    <span className=' text-center ml-32 lg:ml-48 text-green-500'>{successMessage}</span>
                   )
                 }
               </div>
